@@ -1,0 +1,36 @@
+version: '2'
+services:
+  php:
+    container_name: php
+    build:
+      context: .
+      dockerfile: ./docker/local/Dockerfile
+    working_dir: /var/www/html/
+    volumes:
+      - ./source:/var/www/html
+    networks:
+      - backend
+    labels:
+      - traefik.frontend.rule=Host:wordpress.localhost
+      - traefik.docker.network=backend
+    environment:
+      - APACHE_LOG_DIR=/var/log
+
+  node:
+    container_name: node
+    image: node:12-buster
+    working_dir: /srv/app
+    tty: true
+    user: node
+    networks:
+      - backend
+    volumes:
+      - ./source/wp:/srv/app
+    labels:
+      - traefik.frontend.rule=Host:wordpress-front.localhost
+      - traefik.backend=wordpress-front
+      - traefik.port=8080
+
+networks:
+  backend:
+    external: true
