@@ -3,5 +3,6 @@
   "description": "Installation rapide d'un projet utilisant Wordpress X Bedrock",
   "require": {
     "php": ">=8.0"
-  }
+  },
+  "license": "MIT"
 }
