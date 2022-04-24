@@ -1,4 +1,7 @@
 {
+  "name": "h-company/wordpress-bedrock",
+  "description": "Installation rapide d'un projet utilisant Wordpress X Bedrock",
   "require": {
+    "php": ">=8.0"
   }
 }
